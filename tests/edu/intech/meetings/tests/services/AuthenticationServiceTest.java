@@ -1,4 +1,4 @@
-package edu.intech.meetings.services;
+package edu.intech.meetings.tests.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

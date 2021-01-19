@@ -1,4 +1,4 @@
-package edu.intech.meetings.services;
+package edu.intech.meetings.tests.services;
 
 import static org.junit.jupiter.api.extension.ExtensionContext.Namespace.GLOBAL;
 

@@ -1,4 +1,4 @@
-package edu.intech.meetings.services;
+package edu.intech.meetings.tests.services;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 

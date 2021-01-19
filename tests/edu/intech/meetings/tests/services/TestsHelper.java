@@ -1,4 +1,4 @@
-package edu.intech.meetings.services;
+package edu.intech.meetings.tests.services;
 
 import java.io.IOException;
 import java.util.List;
