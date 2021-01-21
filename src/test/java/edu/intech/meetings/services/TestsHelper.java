@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.intech.meetings.model.Meeting;
+import edu.intech.meetings.model.Room;
 import edu.intech.meetings.model.User;
 
 public class TestsHelper {
@@ -19,6 +20,11 @@ public class TestsHelper {
 	static Meeting JsonToMeeting(final String jsonString) throws IOException {
 		final ObjectMapper mapper = new ObjectMapper();
 		return mapper.readerFor(Meeting.class).readValue(jsonString);
+	}
+
+	static Room JsonToRoom(final String jsonString) throws IOException {
+		final ObjectMapper mapper = new ObjectMapper();
+		return mapper.readerFor(Room.class).readValue(jsonString);
 	}
 
 	static List<Meeting> JsonToMeetingsList(final String jsonString) throws IOException {

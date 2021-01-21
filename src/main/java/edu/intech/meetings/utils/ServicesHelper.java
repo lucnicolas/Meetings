@@ -18,7 +18,7 @@ public class ServicesHelper {
 	private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
 
 	// static Pattern object, since pattern is fixed
-	private static Pattern pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
+	private static final Pattern pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
 
 	/**
 	 * This method validates the input email address with EMAIL_REGEX pattern
