@@ -41,7 +41,7 @@ public class UsersService {
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllUsers() throws JSONException, JsonGenerationException, JsonMappingException, IOException {
+	public Response getAllUsers() throws JSONException, IOException {
 		// No token needed to read all users.
 		final ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -61,7 +61,7 @@ public class UsersService {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getUserById(final MultivaluedMap<String, String> formParams)
-			throws JSONException, JsonGenerationException, JsonMappingException, IOException {
+			throws JSONException, IOException {
 		// No token needed to read.
 
 		final JSONObject json = new JSONObject();
@@ -104,7 +104,7 @@ public class UsersService {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addUser(final MultivaluedMap<String, String> formParams)
-			throws JsonGenerationException, JsonMappingException, IOException, JSONException {
+			throws IOException, JSONException {
 		final JSONObject json = new JSONObject();
 		// Checking JWT...
 		try {
@@ -142,7 +142,7 @@ public class UsersService {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateUser(final MultivaluedMap<String, String> formParams)
-			throws JsonGenerationException, JsonMappingException, IOException, JSONException {
+			throws IOException, JSONException {
 		final JSONObject json = new JSONObject();
 		// Checking JWT...
 		try {
@@ -209,7 +209,7 @@ public class UsersService {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteUserById(final MultivaluedMap<String, String> formParams)
-			throws JSONException, JsonGenerationException, JsonMappingException, IOException {
+			throws JSONException, IOException {
 		final JSONObject json = new JSONObject();
 		// Checking JWT...
 		try {
