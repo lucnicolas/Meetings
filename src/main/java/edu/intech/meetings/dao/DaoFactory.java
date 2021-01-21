@@ -4,8 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import edu.intech.meetings.dao.implementations.bdd.MeetingDaoBdd;
+import edu.intech.meetings.dao.implementations.bdd.RoomDaoBdd;
 import edu.intech.meetings.dao.implementations.bdd.UserDaoBdd;
 import edu.intech.meetings.dao.interfaces.IMeetingDao;
+import edu.intech.meetings.dao.interfaces.IRoomDao;
 import edu.intech.meetings.dao.interfaces.IUserDao;
 import edu.intech.meetings.exceptions.DaoException;
 import edu.intech.meetings.servletListener.MeetingsContextListener;
@@ -17,6 +19,7 @@ public class DaoFactory {
 
 	private IUserDao userDao = null;
 	private IMeetingDao meetingDao = null;
+	private IRoomDao roomDao = null;
 
 	/**
 	 * actory
@@ -85,6 +88,13 @@ public class DaoFactory {
 			this.meetingDao = new MeetingDaoBdd(this.em);
 		}
 		return this.meetingDao;
+	}
+
+	public IRoomDao getRoomDao() {
+		if (this.roomDao == null) {
+			this.roomDao = new RoomDaoBdd(this.em);
+		}
+		return this.roomDao;
 	}
 
 }
