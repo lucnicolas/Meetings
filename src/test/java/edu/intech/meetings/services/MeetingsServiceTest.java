@@ -1,31 +1,21 @@
 package edu.intech.meetings.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.StringTokenizer;
-
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.Response;
-
+import com.sun.jersey.core.util.MultivaluedMapImpl;
+import edu.intech.meetings.model.Meeting;
+import edu.intech.meetings.model.User;
 import org.codehaus.jettison.json.JSONException;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.sun.jersey.core.util.MultivaluedMapImpl;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
+import java.io.IOException;
+import java.util.List;
+import java.util.StringTokenizer;
 
-import edu.intech.meetings.model.Meeting;
-import edu.intech.meetings.model.User;
-import edu.intech.meetings.services.AuthenticationService;
-import edu.intech.meetings.services.MeetingsService;
-import edu.intech.meetings.services.UsersService;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Classe servant à tester les services de gestion des réunions de la classe
@@ -47,9 +37,9 @@ import edu.intech.meetings.services.UsersService;
 public class MeetingsServiceTest extends AbstractTest {
 
 	private final static String TEST_MEETING_TITLE = "Révéillon de noël";
-	private final static String TEST_MEETING_START_OK = "24/12/2020 20:00";
+	protected final static String TEST_MEETING_START_OK = "24/12/2020 20:00";
 	private final static String TEST_MEETING_START_KO = "33/22/2020 40:73";
-	private final static String TEST_MEETING_DURATION = "180";
+	protected final static String TEST_MEETING_DURATION = "180";
 	private final static String TEST_MEETING_USERS_KO = "-1,-2";
 
 	private final static String TEST_CHANGE_TITLE = "Réveillon du nouvel an.";
@@ -486,11 +476,11 @@ public class MeetingsServiceTest extends AbstractTest {
 		return ret;
 	}
 
-	private String createGuestsList() throws JsonGenerationException, JsonMappingException, IOException, JSONException {
+	private String createGuestsList() throws IOException, JSONException {
 		return Integer.toString(createUserAndReturnId("01")).concat(",").concat(Integer.toString(createUserAndReturnId("02")));
 	}
 
-	private int createUserAndReturnId(final String userNumber) throws JsonGenerationException, JsonMappingException, IOException, JSONException {
+	private int createUserAndReturnId(final String userNumber) throws IOException, JSONException {
 		final MultivaluedMap<String, String> params = new MultivaluedMapImpl();
 		params.add(AuthenticationService.AUTH_PARAM_TOKEN, TestSetup.token);
 		params.add(UsersService.USER_PARAM_NAME, "TestUser_".concat(userNumber));
@@ -500,14 +490,14 @@ public class MeetingsServiceTest extends AbstractTest {
 		return tempUser.getId();
 	}
 
-	private void deleteJunkGuests(final String guestsList) throws JsonGenerationException, JsonMappingException, IOException, JSONException {
+	private void deleteJunkGuests(final String guestsList) throws IOException, JSONException {
 		final StringTokenizer st = new StringTokenizer(guestsList, ",");
 		while (st.hasMoreTokens()) {
 			deleteUser(st.nextToken());
 		}
 	}
 
-	private void deleteUser(final String userId) throws JsonGenerationException, JsonMappingException, IOException, JSONException {
+	private void deleteUser(final String userId) throws IOException, JSONException {
 		final MultivaluedMap<String, String> params = new MultivaluedMapImpl();
 		params.add(AuthenticationService.AUTH_PARAM_TOKEN, TestSetup.token);
 		params.add(UsersService.USER_PARAM_ID, userId);
@@ -515,14 +505,14 @@ public class MeetingsServiceTest extends AbstractTest {
 	}
 
 	private void deleteJunkMeetings(final String commaSeparatedMeetingsIdList)
-			throws JsonGenerationException, JsonMappingException, IOException, JSONException {
+			throws IOException, JSONException {
 		final StringTokenizer st = new StringTokenizer(commaSeparatedMeetingsIdList, ",");
 		while (st.hasMoreTokens()) {
 			deleteMeeting(st.nextToken());
 		}
 	}
 
-	private void deleteMeeting(final String meetingId) throws JsonGenerationException, JsonMappingException, IOException, JSONException {
+	private void deleteMeeting(final String meetingId) throws IOException, JSONException {
 		final MultivaluedMap<String, String> params = new MultivaluedMapImpl();
 		params.add(AuthenticationService.AUTH_PARAM_TOKEN, TestSetup.token);
 		params.add(UsersService.USER_PARAM_ID, meetingId);

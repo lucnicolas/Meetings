@@ -53,6 +53,12 @@ public class MeetingDaoBdd implements IMeetingDao {
 	}
 
 	@Override
+	public List<Meeting> readMeetingsByIdList(List<Integer> ids) throws DaoException {
+		final TypedQuery<Meeting> query = this.em.createNamedQuery("Meeting.findByIdsList", Meeting.class);
+		query.setParameter("ids", ids);
+		return query.getResultList();	}
+
+	@Override
 	public List<Meeting> readAllMeetingsWithUser(final int userId) throws DaoException {
 		final TypedQuery<Meeting> query = this.em.createNamedQuery("Meeting.findByUser", Meeting.class);
 		query.setParameter("id", userId);

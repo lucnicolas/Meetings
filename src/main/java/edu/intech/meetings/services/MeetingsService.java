@@ -56,7 +56,7 @@ public class MeetingsService {
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllMeetings() throws JSONException, JsonGenerationException, JsonMappingException, IOException {
+	public Response getAllMeetings() throws JSONException, IOException {
 
 		// No token needed to read all meetings.
 		try {
@@ -77,7 +77,7 @@ public class MeetingsService {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getMeetingById(final MultivaluedMap<String, String> formParams)
-			throws JSONException, JsonGenerationException, JsonMappingException, IOException {
+			throws JSONException, IOException {
 		// No token needed to read all meetings.
 
 		final JSONObject json = new JSONObject();
@@ -119,7 +119,7 @@ public class MeetingsService {
 	@Consumes("application/x-www-form-urlencoded")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getMeetingsByUserId(final MultivaluedMap<String, String> formParams)
-			throws JSONException, JsonGenerationException, JsonMappingException, IOException {
+			throws JSONException, IOException {
 		// No token needed to read meetings.
 
 		final JSONObject json = new JSONObject();
@@ -155,7 +155,7 @@ public class MeetingsService {
 	@Path("/add")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addMeeting(final MultivaluedMap<String, String> formParams)
-			throws JsonGenerationException, JsonMappingException, IOException, JSONException {
+			throws IOException, JSONException {
 		final JSONObject json = new JSONObject();
 		// Checking JWT...
 		try {
@@ -193,7 +193,7 @@ public class MeetingsService {
 	@Path("/update")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateMeeting(final MultivaluedMap<String, String> formParams)
-			throws JsonGenerationException, JsonMappingException, IOException, JSONException {
+			throws IOException, JSONException {
 		final JSONObject json = new JSONObject();
 		// Checking JWT...
 		try {
@@ -261,7 +261,7 @@ public class MeetingsService {
 	@Path("/delete")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteMeetingById(final MultivaluedMap<String, String> formParams)
-			throws JSONException, JsonGenerationException, JsonMappingException, IOException {
+			throws JSONException, IOException {
 		final JSONObject json = new JSONObject();
 		// Checking JWT...
 		try {

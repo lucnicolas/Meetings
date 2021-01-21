@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.intech.meetings.exceptions.DaoException;
 import edu.intech.meetings.model.Meeting;
+import edu.intech.meetings.model.User;
 
 public interface IMeetingDao {
 
@@ -33,6 +34,13 @@ public interface IMeetingDao {
 	 * @throws DaoException en cas d'erreur
 	 */
 	List<Meeting> readAllMeetings() throws DaoException;
+
+	/**
+	 * @param ids
+	 * @return
+	 * @throws DaoException
+	 */
+	List<Meeting> readMeetingsByIdList(final List<Integer> ids) throws DaoException;
 
 	/**
 	 * Renvoie toutes les réunions dans lesquelles un utilisateur est invité.
